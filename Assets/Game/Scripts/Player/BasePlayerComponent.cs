@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using Game.Scripts.Player.Input;
 using UnityEngine;
 
-public abstract class BasePlayerComponent : MonoBehaviour
+namespace Game.Scripts.Player
 {
-    // Start is called before the first frame update
-    void Start()
+    public abstract class BasePlayerComponent : MonoBehaviour
     {
+        private IInputEventProvider _inputEventProvider;
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        protected PlayerCore core;
+        protected IInputEventProvider InputEventProvider => _inputEventProvider;
+        protected PlayerParameters CurrentPlayerParameters => core.CurrentPlayerParameter;
+        protected PlayerType PlayerType => core.Type;
         
+        private void Start()
+        {
+            core = GetComponent<PlayerCore>();
+            _inputEventProvider = GetComponent<IInputEventProvider>();
+            
+            
+        }
     }
 }

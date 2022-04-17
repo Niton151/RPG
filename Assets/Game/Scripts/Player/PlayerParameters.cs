@@ -1,21 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UniRx;
+using System;
 
-public struct PlayerParameters
+namespace Game.Scripts.Player
 {
-    public int Level { get; set; }
-    
-    public float JumpPower { get; set; }
-    public float MoveSpeed { get; set; }
-    public float RunSpeed { get; set; }
-    
-    public float MaxHP { get; set; }
-    public float MaxMP { get; set; }
-    public float MaxSP { get; set; }
+    [Serializable]
+    public struct PlayerParameters
+    {
+        public PlayerType PlayerType;
 
-    public int Atk { get; set; }
-    public int Defence { get; set; }
-    public int Magic { get; set; }
+        public int Level;
+
+        public float JumpPower;
+        public float MoveSpeed;
+        public float RunSpeed;
+
+        public float MaxHP;
+        public float MaxMP;
+        public float MaxSP;
+
+        public int ATK;
+        public int DEF;
+        public int INT;
+
+        /// <summary>
+        /// Job:SwordMan, lv:1, jump:1, walk:1, run:3, maxHP,MP,SP:100, ATK,DFS,INT:10, InvSize:3 
+        /// </summary>
+        /// <returns></returns>
+        public static PlayerParameters GetDefaultParameters()
+        {
+            var parameters = new PlayerParameters();
+            parameters.PlayerType = PlayerType.SwordMan;
+            parameters.Level = 1;
+            parameters.JumpPower = 1;
+            parameters.MoveSpeed = 1;
+            parameters.RunSpeed = 3;
+            parameters.MaxHP = 100;
+            parameters.MaxMP = 100;
+            parameters.MaxSP = 100;
+            parameters.ATK = 10;
+            parameters.DEF = 10;
+            parameters.INT = 10;
+        
+            return parameters;
+        }
+    }
 }

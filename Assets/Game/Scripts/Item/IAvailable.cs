@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Game.Scripts.Player;
 
-public interface IAvailable
+namespace Game.Scripts.Item
 {
-    
+    public interface IAvailable
+    {
+        void PickedUp(PlayerCore player);
+    }
 }

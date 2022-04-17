@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4d1c3aa23f6f74383464e1e20b4395, type: 3}
+  m_Name: LeatherArmor
+  m_EditorClassIdentifier: 
+  id: 2
+  description: "\u9769\u306E\u93A7"
+  price: 50
+  prefab: {fileID: 5083908696207995539, guid: 52b72966150da5c419809852a253a2ab, type: 3}
+  DEF: 5
+  requiredLevel: 1
+  requiredType: 000000000100000003000000

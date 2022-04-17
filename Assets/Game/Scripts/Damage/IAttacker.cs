@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IAttacker
+namespace Game.Scripts.Damage
 {
-   
+    public interface IAttacker
+    {
+        public void Attack(IDamageApplicable target);
+    }
 }

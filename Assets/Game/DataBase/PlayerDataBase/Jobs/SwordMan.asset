@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23886746266988443b30d3b650cdc687, type: 3}
+  m_Name: SwordMan
+  m_EditorClassIdentifier: 
+  parameters:
+    PlayerType: 0
+    Level: 1
+    JumpPower: 1
+    MoveSpeed: 1
+    RunSpeed: 2
+    MaxHP: 100
+    MaxMP: 100
+    MaxSP: 100
+    ATK: 10
+    DEF: 10
+    INT: 10
+  prefab: {fileID: 1963349428367976092, guid: 95d8343ddfd7f894dab3e642f180b27f, type: 3}

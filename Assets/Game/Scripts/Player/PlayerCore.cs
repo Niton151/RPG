@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
+using Game.DataBase.PlayerDataBase;
+using Game.Scripts.Damage;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Player
+namespace Game.Scripts.Player
 {
     public class PlayerCore : MonoBehaviour, IDamageApplicable
     {
@@ -22,40 +20,67 @@ namespace Player
         public IReadOnlyReactiveProperty<float> SP => _sp;
         private FloatReactiveProperty _sp = new FloatReactiveProperty();
         
-        public PlayerParameters CurrentPlayerParameter => _currentPlayerParameter;
         public bool IsAlive { get; private set; }
-        public IObservable<Damage> OnDamage => _onDamageSubject;
-        private Subject<Damage> _onDamageSubject = new Subject<Damage>();
-
-        public IObservable<Damage> OnDead => _onDeadSubject;
-        private Subject<Damage> _onDeadSubject = new Subject<Damage>();
         
+        public IObservable<Unit> OnInitAsync => _onInitAsyncSubject;
+        private AsyncSubject<Unit> _onInitAsyncSubject = new AsyncSubject<Unit>();
+
+        public IObservable<Damage.Damage> OnDamage => _onDamageSubject;
+        private Subject<Damage.Damage> _onDamageSubject = new Subject<Damage.Damage>();
+
+        public IObservable<Damage.Damage> OnDead => _onDeadSubject;
+        private Subject<Damage.Damage> _onDeadSubject = new Subject<Damage.Damage>();
+        
+        public PlayerParameters CurrentPlayerParameter => _currentPlayerParameter;
         private PlayerParameters _currentPlayerParameter;
         
-        public void Init(PlayerParameters playerParameters)
+        public PlayerInventory Inventory => _inventory;
+        private PlayerInventory _inventory = new PlayerInventory();
+
+        public PlayerEquipment Equipment => _equipment;
+        private PlayerEquipment _equipment = new PlayerEquipment();
+
+        public PlayerAttack Attacker => _attacker;
+        private PlayerAttack _attacker;
+
+        public PlayerCore()
         {
-            _hp.Value = playerParameters.MaxHP;
-            _mp.Value = playerParameters.MaxMP;
-            _sp.Value = playerParameters.MaxSP;
+            _attacker = new PlayerAttack(this);
+        }
 
-            _currentPlayerParameter = playerParameters;
-            IsAlive = true;
-            
-            OnDamage
-                .Subscribe(x =>
-                {
-                    _hp.Value -= x.Value;
-                    if (_hp.Value <= 0)
+        private void Awake()
+        {
+            _onInitAsyncSubject.Subscribe(_ =>
+            {
+                OnDamage
+                    .Subscribe(x =>
                     {
-                        _onDeadSubject.OnNext(x);
-                    }
-                }).AddTo(this);
+                        _hp.Value -= x.Value;
+                        if (_hp.Value <= 0)
+                        {
+                            _onDeadSubject.OnNext(x);
+                        }
+                    }).AddTo(this);
 
-            OnDead
-                .Subscribe(_ =>
-                {
-                    IsAlive = false;
-                }).AddTo(this);
+                OnDead
+                    .Subscribe(_ =>
+                    {
+                        IsAlive = false;
+                    }).AddTo(this);
+            }).AddTo(this);
+        }
+
+        public void Init(PlayerJobData data)
+        {
+            _hp.Value = data.parameters.MaxHP;
+            _mp.Value = data.parameters.MaxMP;
+            _sp.Value = data.parameters.MaxSP;
+
+            _currentPlayerParameter = data.parameters;
+            IsAlive = true;
+
+            _onInitAsyncSubject.OnNext(Unit.Default);
+            _onInitAsyncSubject.OnCompleted();
         }
         
         public void SetPlayerParameter(PlayerParameters playerParameter)
@@ -63,7 +88,23 @@ namespace Player
             _currentPlayerParameter = playerParameter;
         }
 
-        public void ApplyDamage(Damage damage)
+        public void SetXP(PlayerXPType healType, float value)
+        {
+            switch (healType)
+            {
+                case PlayerXPType.HP :
+                    _hp.Value += value;
+                    break;
+                case PlayerXPType.MP :
+                    _mp.Value += value;
+                    break;
+                case PlayerXPType.SP :
+                    _sp.Value += value;
+                    break;
+            }
+        }
+
+        public void ApplyDamage(Damage.Damage damage)
         {
             _onDamageSubject.OnNext(damage);
         }

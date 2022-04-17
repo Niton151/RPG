@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerEffect : BasePlayerComponent
+namespace Game.Scripts.Player
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerEffect : BasePlayerComponent
     {
-        
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }

@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
+using Game.DataBase.PlayerDataBase;
+using Game.Scripts.Player;
 using UnityEngine;
 
-public class PlayerProvider : MonoBehaviour
+namespace Game.Scripts.Manager
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerProvider
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private static PlayerJobDataBase DataBase = Resources.Load<PlayerJobDataBase>("JobDataBase");
+    
+        public static PlayerCore Create(PlayerType job, Vector3 pos)
+        {
+            var data = DataBase.FindData(job);
+            var player = Object.Instantiate(data.prefab, pos, Quaternion.identity).GetComponent<PlayerCore>();
+            player.Init(data);
+            return player;
+        }
     }
 }

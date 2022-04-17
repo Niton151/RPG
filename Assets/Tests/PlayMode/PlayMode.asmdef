@@ -11,14 +11,22 @@
         "UniTask.Editor",
         "UniTask.Linq",
         "UniTask.TextMeshPro",
-        "UniRx"
+        "UniRx",
+        "Sirenix.OdinInspector.CompatibilityLayer",
+        "Sirenix.OdinInspector.CompatibilityLayer.Editor"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "nunit.framework.dll"
+        "nunit.framework.dll",
+        "Sirenix.OdinInspector.Attributes.dll",
+        "Sirenix.Serialization.Config.dll",
+        "Sirenix.Utilities.dll",
+        "Sirenix.Serialization.dll",
+        "Sirenix.OdinInspector.Editor.dll",
+        "Sirenix.Utilities.Editor.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [

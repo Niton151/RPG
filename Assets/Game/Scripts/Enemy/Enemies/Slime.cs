@@ -1,13 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Slime : EnemyBase
+namespace Game.Scripts.Enemy.Enemies
 {
-    public void Init(EnemyParameters enemyParameters)
+    public class Slime : EnemyBase
     {
-        EnemyParameters = enemyParameters;
-    }
 
-    public EnemyParameters EnemyParameters { get; private set; }
+    }
 }

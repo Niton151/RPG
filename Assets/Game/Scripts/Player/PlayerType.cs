@@ -1,8 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public enum PlayerType
+namespace Game.Scripts.Player
 {
-    
+    public enum PlayerType
+    {
+        SwordMan,
+        Fighter,
+        Wizard,
+        Archer
+    }
 }

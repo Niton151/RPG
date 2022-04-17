@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IInputEventProvider
+namespace Game.Scripts.Player.Input
 {
+    public interface IInputEventProvider
+    {
     
+    }
 }

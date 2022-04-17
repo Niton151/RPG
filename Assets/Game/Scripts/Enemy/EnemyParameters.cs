@@ -1,17 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class EnemyParameters
+namespace Game.Scripts.Enemy
 {
-    public int Level { get; set; }
-    
-    public float MoveSpeed { get; set; }
+    [Serializable]
+    public class EnemyParameters
+    {
+        public int Level;
 
-    public float MaxHP { get; set; }
-    public float MaxMP { get; set; }
+        public float MoveSpeed;
 
-    public int Atk { get; set; }
-    public int Defence { get; set; }
-    public int Magic { get; set; }
+        public float MaxHP;
+        public int ATK;
+        public int DEF;
+        public int INT;
+
+        /// <summary>
+        /// Lv:1, Speed:1, MaxHP:100, ATK,DFS,INT:5
+        /// </summary>
+        /// <returns></returns>
+        public static EnemyParameters GetDefaultParameters()
+        {
+            var p = new EnemyParameters();
+
+            p.Level = 1;
+            p.MoveSpeed = 1;
+            p.MaxHP = 100;
+            p.ATK = 5;
+            p.DEF = 5;
+            p.INT = 5;
+
+            return p;
+        }
+    }
 }

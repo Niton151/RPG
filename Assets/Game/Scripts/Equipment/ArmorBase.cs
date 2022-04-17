@@ -1,18 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
+using Game.DataBase.ItemDataBase;
+using Game.Scripts.Item;
 using UnityEngine;
 
-public abstract class ArmorBase : MonoBehaviour, IEquipable
+namespace Game.Scripts.Equipment
 {
-    // Start is called before the first frame update
-    void Start()
+    public abstract class ArmorBase : ItemBase, IEquipable
     {
+        public ArmorData ArmorData { get; private set; }
         
-    }
+        private bool _canEquip => pickedPlayer.CurrentPlayerParameter.Level >= ArmorData.requiredLevel &&
+                                  ArmorData.requiredType.Contains(pickedPlayer.Type);
 
-    // Update is called once per frame
-    void Update()
-    {
+        public override void Init(BaseItemData data)
+        {
+            base.Init(data);
+            ArmorData = Data as ArmorData;
+        }
+
+        public override void Use()
+        {
+            base.Use();
+            
+            if (_canEquip)
+            {
+                var current = pickedPlayer.Equipment.CurrentWeapon;
+                if (current != null)
+                {
+                    current.PickedUp(pickedPlayer);
+                }
+                pickedPlayer.Equipment.Equip(this);
+            }
+            else
+            {
+                Debug.Log("要求レベルを満たしていません");
+            }
+        }
         
+        public void Remove()
+        {
+            PickedUp(pickedPlayer);
+            pickedPlayer.Equipment.Equip(this);
+        }
     }
 }

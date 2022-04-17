@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Game.Scripts.Player.Input;
 
-public class PlayerMover : BasePlayerComponent, IInputEventProvider
+namespace Game.Scripts.Player
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerMover : BasePlayerComponent, IInputEventProvider
     {
-        
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }

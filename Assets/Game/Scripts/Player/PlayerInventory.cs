@@ -1,18 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using Game.Scripts.Item;
 
-public class PlayerInventory : MonoBehaviour
+namespace Game.Scripts.Player
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerInventory
     {
-        
-    }
+        public List<ItemBase> ItemList => _itemList;
+        private List<ItemBase> _itemList = new List<ItemBase>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public bool IsFull => MaxSize <= _itemList.Count;
+
+        public int MaxSize { get; set; }
     }
 }

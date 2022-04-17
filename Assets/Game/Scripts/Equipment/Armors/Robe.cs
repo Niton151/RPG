@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Robe : ArmorBase
+namespace Game.Scripts.Equipment.Armors
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Robe : ArmorBase
     {
-        
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }

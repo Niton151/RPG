@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IDamageApplicable
+namespace Game.Scripts.Damage
 {
-    void ApplyDamage(Damage damage);
+    public interface IDamageApplicable
+    {
+        void ApplyDamage(Damage damage);
+    }
 }

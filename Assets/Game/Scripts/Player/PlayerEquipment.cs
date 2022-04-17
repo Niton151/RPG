@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
+using Game.Scripts.Equipment;
+using JetBrains.Annotations;
 using UnityEngine;
 
-public class PlayerEquipment : MonoBehaviour
+namespace Game.Scripts.Player
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerEquipment
     {
-        
-    }
+        public WeaponBase CurrentWeapon { get; private set; }
+        public ArmorBase CurrentArmor { get; private set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void Equip([CanBeNull] IEquipable item)
+        {
+            switch (item)
+            {
+                case WeaponBase w:
+                    CurrentWeapon = (w !=  CurrentWeapon) ? w : null;
+                    break;
+                case ArmorBase a:
+                    CurrentArmor = (a != CurrentArmor) ? a : null;
+                    break;
+                default:
+                    Debug.LogError("不明なアイテムが装備されました。");
+                    break;
+            }
+        }
     }
 }
