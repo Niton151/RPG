@@ -2,8 +2,14 @@ using NUnit.Framework;
 
 namespace Tests.PlayMode.ItemTests
 {
-    public class AllWeaponTest
+    public class LongRangeWeaponTest
     {
+        [SetUp]
+        public void SetUp()
+        {
+            
+        }
+        
         [Test]
         public void 初期化()
         {
@@ -20,6 +26,12 @@ namespace Tests.PlayMode.ItemTests
         public void 発射物にステータスを乗せる()
         {
             Assert.That(true, Is.False);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            
         }
     }
 }

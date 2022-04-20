@@ -11,7 +11,16 @@ namespace Game.Scripts.Manager
         public static ItemBase Create(ItemID id, Vector3 pos)
         {
             var data = DataBase.FindData(id);
-            var item = Object.Instantiate(data.prefab, pos, Quaternion.identity).GetComponent<ItemBase>();
+            ItemBase item;
+            if (data.poolProvider != null)
+            {
+                item = (ItemBase) data.poolProvider.Get().Rent();
+                item.transform.position = pos;
+            }
+            else
+            {
+                item = Object.Instantiate(data.prefab, pos, Quaternion.identity).GetComponent<ItemBase>();   
+            }
             item.Init(data);
             return item;
         }

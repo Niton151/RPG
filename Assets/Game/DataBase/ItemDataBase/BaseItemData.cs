@@ -1,5 +1,6 @@
 using System;
 using Game.Scripts.Item;
+using Game.Scripts.Utility;
 using UnityEngine;
 
 namespace Game.DataBase.ItemDataBase
@@ -11,5 +12,6 @@ namespace Game.DataBase.ItemDataBase
         [SerializeField] public string description;
         [SerializeField] public int price;
         [SerializeField] public GameObject prefab;
+        [SerializeField] public ItemPoolProvider poolProvider;
     }
 }

@@ -29,7 +29,7 @@ namespace Tests.PlayMode.ItemTests
         {
             item.PickedUp(PlayerProvider.Create(PlayerType.SwordMan, Vector3.zero));
             yield return null;
-            Assert.That(item == null, Is.True);
+            Assert.That(item.gameObject.activeSelf, Is.False);
         }
 
         [TearDown]

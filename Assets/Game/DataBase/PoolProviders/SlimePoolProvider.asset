@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8716d42ebcac4b46a4ce9e861180868, type: 3}
+  m_Name: SlimePoolProvider
+  m_EditorClassIdentifier: 
+  item: {fileID: 4800878663801091000, guid: af9d258b23f936e49a8e485580355331, type: 3}

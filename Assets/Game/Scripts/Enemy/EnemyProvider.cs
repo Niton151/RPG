@@ -19,7 +19,16 @@ namespace Game.Scripts.Enemy
             if (_maxEnemyCount > EnemyCount)
             {
                 var data = DataBase.FindData(id);
-                var enemy = Object.Instantiate(data.prefab, pos, Quaternion.identity).GetComponent<EnemyBase>();
+                EnemyBase enemy;
+                if (data.poolProvider != null)
+                {
+                    enemy = (EnemyBase) data.poolProvider.Get().Rent();
+                    enemy.transform.position = pos;
+                }
+                else
+                {
+                    enemy = Object.Instantiate(data.prefab, pos, Quaternion.identity).GetComponent<EnemyBase>();   
+                }
                 enemy.Init(data);
                 enemies.Add(enemy);
                 EnemyCount++;

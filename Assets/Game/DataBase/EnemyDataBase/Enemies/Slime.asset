@@ -63,3 +63,4 @@ MonoBehaviour:
     ATK: 5
     DEF: 5
     INT: 5
+  poolProvider: {fileID: 11400000, guid: da9fb49143d9efa42bda6a60aa0e7ead, type: 2}

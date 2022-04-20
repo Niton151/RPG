@@ -20,8 +20,15 @@ namespace Game.Scripts.Item
         {
             pickedPlayer = player;
             player.Inventory.ItemList.Add(this);
-            
-            Destroy(this.gameObject);
+
+            if (Data.poolProvider != null)
+            {
+                Data.poolProvider.Get().Return(this);
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
 
         public virtual void Use()

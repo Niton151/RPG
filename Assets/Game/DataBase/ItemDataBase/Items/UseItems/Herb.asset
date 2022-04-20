@@ -16,5 +16,6 @@ MonoBehaviour:
   description: "HP\u3092\u5C0F\u56DE\u5FA9\u3059\u308B"
   price: 100
   prefab: {fileID: 1272428171267156414, guid: 64fb1426ff17e6741a0f8813c411dda5, type: 3}
+  poolProvider: {fileID: 11400000, guid: f423ea546951866489a5190dac214533, type: 2}
   healValue: 25
   healType: 0

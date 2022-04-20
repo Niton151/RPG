@@ -3,7 +3,6 @@ using Cysharp.Threading.Tasks;
 using Game.DataBase.EnemyDataBase;
 using Game.DataBase.ItemDataBase;
 using Game.Scripts.Damage;
-using Game.Scripts.Item;
 using Game.Scripts.Manager;
 using Game.Scripts.Player;
 using UniRx;
