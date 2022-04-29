@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using Game.DataBase.PlayerDataBase;
 using Game.Scripts.Damage;
+using Game.Scripts.Damage.AbState;
 using UniRx;
 using UnityEngine;
 
@@ -38,10 +40,13 @@ namespace Game.Scripts.Player
         private PlayerInventory _inventory = new PlayerInventory();
 
         public PlayerEquipment Equipment => _equipment;
-        private PlayerEquipment _equipment = new PlayerEquipment();
+        private PlayerEquipment _equipment;
 
         public PlayerAttack Attacker => _attacker;
         private PlayerAttack _attacker;
+
+        public Dictionary<Element, IAbState> AbStates => _abStates;
+        private Dictionary<Element, IAbState> _abStates = new Dictionary<Element, IAbState>();
 
         public PlayerCore()
         {
@@ -56,6 +61,7 @@ namespace Game.Scripts.Player
                     .Subscribe(x =>
                     {
                         _hp.Value -= x.Value;
+                        _abStates[x.Element] = new Poison(5);
                         if (_hp.Value <= 0)
                         {
                             _onDeadSubject.OnNext(x);
@@ -78,6 +84,8 @@ namespace Game.Scripts.Player
 
             _currentPlayerParameter = data.parameters;
             IsAlive = true;
+            
+            _equipment = new PlayerEquipment(this.transform);
 
             _onInitAsyncSubject.OnNext(Unit.Default);
             _onInitAsyncSubject.OnCompleted();
@@ -107,6 +115,7 @@ namespace Game.Scripts.Player
         public void ApplyDamage(Damage.Damage damage)
         {
             _onDamageSubject.OnNext(damage);
+            
         }
 
         private void OnDestroy()

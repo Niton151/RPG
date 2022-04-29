@@ -62,7 +62,7 @@ namespace Game.Scripts.Enemy
             _onDamageSubject.OnNext(damage);
         }
 
-        public void Attack(IDamageApplicable target)
+        public virtual void Attack(IDamageApplicable target)
         {
             target.ApplyDamage(new Damage.Damage(this, Data.parameters.ATK));
         }

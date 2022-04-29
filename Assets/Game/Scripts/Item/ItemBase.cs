@@ -21,14 +21,7 @@ namespace Game.Scripts.Item
             pickedPlayer = player;
             player.Inventory.ItemList.Add(this);
 
-            if (Data.poolProvider != null)
-            {
-                Data.poolProvider.Get().Return(this);
-            }
-            else
-            {
-                Destroy(this.gameObject);
-            }
+            this.gameObject.SetActive(false);
         }
 
         public virtual void Use()
@@ -39,6 +32,15 @@ namespace Game.Scripts.Item
         public void Throw()
         {
             pickedPlayer.Inventory.ItemList.Remove(this);
+            
+            if (Data.poolProvider != null)
+            {
+                Data.poolProvider.Get().Return(this);
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }

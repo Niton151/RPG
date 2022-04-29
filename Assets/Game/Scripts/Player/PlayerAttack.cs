@@ -1,4 +1,6 @@
 using Game.Scripts.Damage;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Game.Scripts.Player
 {

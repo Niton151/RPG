@@ -1,4 +1,7 @@
+using System;
+using System.Collections;
 using Game.Scripts.Damage;
+using Game.Scripts.Damage.AbState;
 using Game.Scripts.Enemy;
 using Game.Scripts.Enemy.Enemies;
 using Game.Scripts.Equipment.Weapons;
@@ -6,7 +9,9 @@ using Game.Scripts.Item;
 using Game.Scripts.Manager;
 using Game.Scripts.Player;
 using NUnit.Framework;
+using UniRx;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Tests.PlayMode.IntegrationTests
 {
@@ -15,27 +20,48 @@ namespace Tests.PlayMode.IntegrationTests
         private PlayerCore player;
         private Slime enemy;
         private Sword weapon;
+        private ColliderTest ct;
         
         [SetUp]
         public void SetUp()
         {
-            player = PlayerProvider.Create(PlayerType.SwordMan, Vector3.zero);
-            enemy = (Slime)EnemyProvider.Spawn(EnemyID.Slime, Vector3.zero);
-            weapon = (Sword)ItemProvider.Create(ItemID.WoodSword, Vector3.zero);
+            player = PlayerProvider.Create(PlayerType.SwordMan, Vector3.up * 5);
+            enemy = (Slime)EnemyProvider.Spawn(EnemyID.Slime, Vector3.right * 5);
+            weapon = (Sword)ItemProvider.Create(ItemID.WoodSword, Vector3.down * 5);
+            ct = new ColliderTest();
         }
 
-        [Test]
-        public void PlayerからEnemyへの攻撃()
+        [UnityTest]
+        public IEnumerator PlayerからEnemyへの攻撃()
         {
-            player.Attacker.Attack(enemy);
-            Assert.That(enemy.HP.Value, Is.EqualTo(enemy.Data.parameters.MaxHP - player.CurrentPlayerParameter.ATK + (player.Equipment.CurrentWeapon?.WeaponData.ATK ?? 0)));
+            weapon.PickedUp(player);
+            player.Inventory.ItemList[0].Use();
+            
+            ct.Clash(enemy.gameObject, weapon.gameObject);
+
+            yield return ct.OnTestFinished.Timeout(TimeSpan.FromSeconds(3)).ToYieldInstruction(throwOnError:false);
+            
+            Assert.That(enemy.HP.Value, Is.EqualTo(85));
         }
 
-        [Test]
-        public void EnemyからPlayerへの攻撃()
+        [UnityTest]
+        public IEnumerator EnemyからPlayerへの攻撃()
         {
-            enemy.Attack(player);
+            ct.Clash(enemy.gameObject, player.gameObject);
+
+            yield return ct.OnTestFinished.Timeout(TimeSpan.FromSeconds(3)).ToYieldInstruction(throwOnError:false);
+            
             Assert.That(player.HP.Value, Is.EqualTo(player.CurrentPlayerParameter.MaxHP - enemy.Data.parameters.ATK));
+        }
+        
+        [UnityTest]
+        public IEnumerator EnemyからPlayerへの属性攻撃()
+        {
+            ct.Clash(enemy.gameObject, player.gameObject);
+
+            yield return ct.OnTestFinished.Timeout(TimeSpan.FromSeconds(3)).ToYieldInstruction(throwOnError:false);
+            
+            Assert.That(player.AbStates[Element.Poison], Is.EqualTo(typeof(Poison)));
         }
         
         [Test]

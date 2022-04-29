@@ -21,10 +21,6 @@ namespace Tests.PlayMode.PlayerTests
             weapon = (WeaponBase)ItemProvider.Create(ItemID.WoodSword, Vector3.zero);
             
             weapon.PickedUp(core);
-            
-            armor = (ArmorBase)ItemProvider.Create(ItemID.LeatherArmor, Vector3.zero);
-            
-            armor.PickedUp(core);
         }
         
         [Test]
@@ -33,6 +29,13 @@ namespace Tests.PlayMode.PlayerTests
             core.Inventory.ItemList[0].Use();
             
             Assert.That(core.Equipment.CurrentWeapon, Is.EqualTo(weapon));
+        }
+
+        [Test]
+        public void 装備したらオブジェクトを出す()
+        {
+            core.Inventory.ItemList[0].Use();
+            Assert.That(GameObject.Find("WeaponSample(Clone)"), !Is.Null);
         }
 
         [Test]
@@ -54,8 +57,8 @@ namespace Tests.PlayMode.PlayerTests
             weapon1.PickedUp(core);
             core.Inventory.ItemList[0].Use();
             core.Inventory.ItemList[1].Use();
-            
-            Assert.That(core.Inventory.ItemList[1] == weapon && core.Equipment.CurrentWeapon == weapon1, Is.True);
+
+            Assert.That(core.Inventory.ItemList[1] == weapon1 && core.Equipment.CurrentWeapon == weapon1, Is.True);
         }
         
         [Test]
@@ -71,7 +74,6 @@ namespace Tests.PlayMode.PlayerTests
         {
             GameObject.Destroy(core.gameObject);
             GameObject.Destroy(weapon.gameObject);
-            GameObject.Destroy(armor.gameObject);
         }
     }
 }
