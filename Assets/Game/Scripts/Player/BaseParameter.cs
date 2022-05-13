@@ -1,36 +1,39 @@
 using System;
+using Game.Scripts.Utility;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using UniRx;
+using UnityEditor;
+using UnityEngine;
 
 namespace Game.Scripts.Player
 {
     [Serializable]
-    public class BaseParameter
+    public abstract class BaseParameter
     {
         public int Level;
 
-        public float MaxHP;
-        public float MaxMP;
-        public float MaxSP;
+        public Modifier MoveSpeed = new Modifier(1, typeof(float));
 
-        public int ATK;
-        public int DEF;
-        public int INT;
+        public Modifier MaxHP;
+        public Modifier MaxMP;
+        public Modifier MaxSP;
 
-        /// <summary>
-        /// Job:SwordMan, lv:1, jump:1, walk:1, run:3, maxHP,MP,SP:100, ATK,DFS,INT:10, InvSize:3 
-        /// </summary>
-        /// <returns></returns>
-        public static BaseParameter GetDefaultParameters()
-        {
-            var parameters = new BaseParameter();
-            parameters.Level = 1;
-            parameters.MaxHP = 100;
-            parameters.MaxMP = 100;
-            parameters.MaxSP = 100;
-            parameters.ATK = 10;
-            parameters.DEF = 10;
-            parameters.INT = 10;
-        
-            return parameters;
-        }
+        [ReadOnly]
+        public ReactiveProperty<float> HP = new ReactiveProperty<float>();
+
+        public Modifier STR;
+        public Modifier DEF;
+        public Modifier INT;
+
+        public Modifier FireResistance = new Modifier(1);
+        public Modifier IceResistance = new Modifier(0);
+        public Modifier WaterResistance = new Modifier(0);
+        public Modifier ThunderResistance = new Modifier(0);
+        public Modifier EarthResistance = new Modifier(0);
+        public Modifier SacredResistance = new Modifier(0);
+        [SerializeReference]public Modifier DarkResistance = new Modifier(0);
+
+        public abstract BaseParameter Copy();
     }
 }

@@ -12,16 +12,222 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23886746266988443b30d3b650cdc687, type: 3}
   m_Name: SwordMan
   m_EditorClassIdentifier: 
-  parameters:
-    PlayerType: 0
-    Level: 1
-    JumpPower: 1
-    MoveSpeed: 1
-    RunSpeed: 2
-    MaxHP: 100
-    MaxMP: 100
-    MaxSP: 100
-    ATK: 10
-    DEF: 10
-    INT: 10
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: parameters
+      Entry: 7
+      Data: 0|Game.Scripts.Player.PlayerParameters, MyProject
+    - Name: Level
+      Entry: 3
+      Data: 1
+    - Name: MoveSpeed
+      Entry: 7
+      Data: 1|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MaxHP
+      Entry: 7
+      Data: 2|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MaxMP
+      Entry: 7
+      Data: 3|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MaxSP
+      Entry: 7
+      Data: 4|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: HP
+      Entry: 7
+      Data: 5|UniRx.ReactiveProperty`1[[System.Single, mscorlib]], UniRx
+    - Name: value
+      Entry: 4
+      Data: 112
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: STR
+      Entry: 7
+      Data: 6|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: DEF
+      Entry: 7
+      Data: 7|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: INT
+      Entry: 7
+      Data: 8|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: FireResistance
+      Entry: 7
+      Data: 9|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: IceResistance
+      Entry: 7
+      Data: 10|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: WaterResistance
+      Entry: 7
+      Data: 11|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ThunderResistance
+      Entry: 7
+      Data: 12|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: EarthResistance
+      Entry: 7
+      Data: 13|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SacredResistance
+      Entry: 7
+      Data: 14|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: DarkResistance
+      Entry: 7
+      Data: 15|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: PlayerType
+      Entry: 3
+      Data: 0
+    - Name: JumpPower
+      Entry: 7
+      Data: 16|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: RunSpeed
+      Entry: 7
+      Data: 17|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: dSTR
+      Entry: 4
+      Data: 0.06
+    - Name: dDEF
+      Entry: 4
+      Data: 0.05
+    - Name: dINT
+      Entry: 4
+      Data: 0.03
+    - Name: dMaxHP
+      Entry: 4
+      Data: 0.05
+    - Name: dMaxMP
+      Entry: 4
+      Data: 0.03
+    - Name: dMaxSP
+      Entry: 4
+      Data: 0.06
+    - Name: SkillTree
+      Entry: 7
+      Data: 18|System.Collections.Generic.Dictionary`2[[Game.Scripts.Player.Skill.SkillID,
+        MyProject],[Game.Scripts.Player.Skill.SkillBase, MyProject]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 19|System.Collections.Generic.EnumEqualityComparer`1[[Game.Scripts.Player.Skill.SkillID,
+        MyProject]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   prefab: {fileID: 1963349428367976092, guid: 95d8343ddfd7f894dab3e642f180b27f, type: 3}

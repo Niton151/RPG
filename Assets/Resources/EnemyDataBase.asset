@@ -23,3 +23,4 @@ MonoBehaviour:
     SerializationNodes: []
   enemies:
   - {fileID: 11400000, guid: fa1e3de663cef6a499ec8af01c2968d4, type: 2}
+  - {fileID: 11400000, guid: 6777d2f98598f264dbc855dcf5cf9b99, type: 2}

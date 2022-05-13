@@ -1,9 +1,9 @@
+using System;
+
 namespace Game.Scripts.Damage.AbState
 {
-    public interface IAbState
+    public interface IAbState : IDisposable
     {
-        float Duration { get; }
-
         void Activate();
     }
 }

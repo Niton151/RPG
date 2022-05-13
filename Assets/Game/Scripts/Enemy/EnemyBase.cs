@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Game.DataBase.EnemyDataBase;
 using Game.DataBase.ItemDataBase;
 using Game.Scripts.Damage;
+using Game.Scripts.Damage.AbState;
 using Game.Scripts.Manager;
 using Game.Scripts.Player;
 using UniRx;
@@ -13,7 +15,6 @@ namespace Game.Scripts.Enemy
 {
     public abstract class EnemyBase : MonoBehaviour, IAttacker, IDamageApplicable
     {
-        public ReactiveProperty<float> HP = new ReactiveProperty<float>();
         public BaseEnemyData Data { get; private set; }
         public IObservable<Damage.Damage> OnDead => _onDeadSubject;
         private Subject<Damage.Damage> _onDeadSubject = new Subject<Damage.Damage>();
@@ -23,6 +24,12 @@ namespace Game.Scripts.Enemy
 
         private readonly AutoResetUniTaskCompletionSource _utsOnInit = AutoResetUniTaskCompletionSource.Create();
 
+        public BaseParameter CurrentParameter => _currentParameter;
+        private EnemyParameters _currentParameter;
+        
+        public Dictionary<Type, IAbState> AbStates => _abStates;
+        private Dictionary<Type, IAbState> _abStates = new Dictionary<Type, IAbState>();
+
         private async void Awake()
         {
             await _utsOnInit.Task;
@@ -30,8 +37,24 @@ namespace Game.Scripts.Enemy
             _onDamageSubject
                 .Subscribe(x =>
                 {
-                    HP.Value -= x.Value;
-                    if (HP.Value <= 0)
+                    _currentParameter.HP.Value -= x.Value;
+                    
+                    if (x.AbState != null)
+                    {
+                        if (!_abStates.ContainsKey(x.AbState.GetType()))
+                        {
+                            _abStates.Add(x.AbState.GetType(), x.AbState);
+                        }
+                        else
+                        {
+                            _abStates[x.AbState.GetType()].Dispose();
+                            _abStates[x.AbState.GetType()] = x.AbState;
+                        }
+
+                        x.AbState.Activate();
+                    }
+                    
+                    if (_currentParameter.HP.Value <= 0)
                     {
                         _onDeadSubject.OnNext(x);
                         _onDeadSubject.OnCompleted();
@@ -42,6 +65,7 @@ namespace Game.Scripts.Enemy
                 .Subscribe(x =>
                 {
                     DropItem(x.Attacker);
+                    DropExp(x.Attacker);
                 }).AddTo(this);
         }
 
@@ -49,10 +73,11 @@ namespace Game.Scripts.Enemy
         {
             _onDamageSubject.AddTo(this);
             _onDeadSubject.AddTo(this);
-            HP.AddTo(this);
 
             Data = data;
-            HP.Value = Data.parameters.MaxHP;
+            _currentParameter = (EnemyParameters)data.parameters.Copy();
+            _currentParameter.HP.Value = _currentParameter.MaxHP.BaseValue;
+            _currentParameter.HP.AddTo(this);
 
             _utsOnInit.TrySetResult();
         }
@@ -64,7 +89,7 @@ namespace Game.Scripts.Enemy
 
         public virtual void Attack(IDamageApplicable target)
         {
-            target.ApplyDamage(new Damage.Damage(this, Data.parameters.ATK));
+            target.ApplyDamage(new Damage.Damage(this, _currentParameter.STR.ModifiedValue));
         }
 
         private void DropItem(IAttacker attacker)
@@ -75,6 +100,14 @@ namespace Game.Scripts.Enemy
                 var item = ItemProvider.Create(itemData.id, this.transform.position);
             
                 item.PickedUp(((PlayerAttack)attacker).PlayerCore);   
+            }
+        }
+
+        private void DropExp(IAttacker attacker)
+        {
+            if (attacker is PlayerAttack)
+            {
+                ((PlayerAttack)attacker).PlayerCore.Exp += _currentParameter.Exp;
             }
         }
     }

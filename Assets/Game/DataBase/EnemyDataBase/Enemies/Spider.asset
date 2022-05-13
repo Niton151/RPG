@@ -1,0 +1,190 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 200ec30f05a152143a88dbcec9c9c991, type: 3}
+  m_Name: Spider
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: parameters
+      Entry: 7
+      Data: 0|Game.Scripts.Enemy.EnemyParameters, MyProject
+    - Name: Level
+      Entry: 3
+      Data: 1
+    - Name: MoveSpeed
+      Entry: 7
+      Data: 1|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MaxHP
+      Entry: 7
+      Data: 2|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MaxMP
+      Entry: 7
+      Data: 3|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MaxSP
+      Entry: 7
+      Data: 4|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: HP
+      Entry: 7
+      Data: 5|UniRx.ReactiveProperty`1[[System.Single, mscorlib]], UniRx
+    - Name: value
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: STR
+      Entry: 7
+      Data: 6|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: DEF
+      Entry: 7
+      Data: 7|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: INT
+      Entry: 7
+      Data: 8|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: FireResistance
+      Entry: 7
+      Data: 9|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: IceResistance
+      Entry: 7
+      Data: 10|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: WaterResistance
+      Entry: 7
+      Data: 11|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ThunderResistance
+      Entry: 7
+      Data: 12|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: EarthResistance
+      Entry: 7
+      Data: 13|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: SacredResistance
+      Entry: 7
+      Data: 14|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: DarkResistance
+      Entry: 7
+      Data: 15|Game.Scripts.Utility.Modifier, MyProject
+    - Name: _base
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: dropItems
+      Entry: 7
+      Data: 16|System.Collections.Generic.Dictionary`2[[Game.DataBase.ItemDataBase.BaseItemData,
+        MyProject],[System.Single, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 17|System.Collections.Generic.ObjectEqualityComparer`1[[Game.DataBase.ItemDataBase.BaseItemData,
+        MyProject]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  id: 1
+  prefab: {fileID: 5517688124000992333, guid: 031687db22971c1468f75a899c61c6be, type: 3}
+  poolProvider: {fileID: 0}

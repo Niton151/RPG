@@ -1,6 +1,9 @@
+using System;
 using Game.Scripts.Damage;
+using Game.Scripts.Damage.AbState;
 using UniRx;
 using UniRx.Triggers;
+using UnityEngine;
 
 namespace Game.Scripts.Player
 {
@@ -16,8 +19,24 @@ namespace Game.Scripts.Player
 
         public void Attack(IDamageApplicable target)
         {
-            var totalATK = _core.CurrentPlayerParameter.ATK + _core.Equipment.CurrentWeapon?.WeaponData.ATK ?? _core.CurrentPlayerParameter.ATK;
-            target.ApplyDamage(new Damage.Damage(this, totalATK));
+            var weapon = _core.Equipment.CurrentWeapon;
+            float totalATK = _core.CurrentParameter.STR.ModifiedValue;
+            IAbState abState = null;
+            if (weapon != null)
+            {
+                if(weapon.WeaponData.AbState != null)
+                    abState = (IAbState) Activator.CreateInstance(weapon.WeaponData.AbState.GetType(), target);
+                totalATK += weapon.WeaponData.ATK;
+            }
+            
+            target.ApplyDamage
+            (
+                new Damage.Damage(
+                    this,
+                    totalATK,
+                    abState
+                )
+            );
         }
     }
 }

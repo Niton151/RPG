@@ -8,7 +8,7 @@ namespace Game.Scripts.Equipment
     {
         public ArmorData ArmorData { get; private set; }
         
-        private bool _canEquip => pickedPlayer.CurrentPlayerParameter.Level >= ArmorData.requiredLevel &&
+        private bool _canEquip => pickedPlayer.CurrentParameter.Level >= ArmorData.requiredLevel &&
                                   ArmorData.requiredType.Contains(pickedPlayer.Type);
 
         public override void Init(BaseItemData data)

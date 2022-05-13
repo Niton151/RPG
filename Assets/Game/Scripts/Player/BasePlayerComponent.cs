@@ -9,7 +9,7 @@ namespace Game.Scripts.Player
         
         protected PlayerCore core;
         protected IInputEventProvider InputEventProvider => _inputEventProvider;
-        protected PlayerParameters CurrentPlayerParameters => core.CurrentPlayerParameter;
+        protected BaseParameter CurrentParameters => core.CurrentParameter;
         protected PlayerType PlayerType => core.Type;
         
         private void Start()

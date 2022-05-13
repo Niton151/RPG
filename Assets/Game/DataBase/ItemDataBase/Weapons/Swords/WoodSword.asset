@@ -16,6 +16,7 @@ MonoBehaviour:
   description: "\u8A13\u7DF4\u7528\u306E\u6728\u306E\u5263"
   price: 50
   prefab: {fileID: 606100685648212888, guid: ce75e769d2e959e488b22e57689c9a36, type: 3}
+  poolProvider: {fileID: 0}
   ATK: 5
   requiredLevel: 1
   requiredType: 00000000

@@ -28,7 +28,7 @@ namespace Tests.PlayMode.EnemyTests
         [Test]
         public void HPをMaxHPにする()
         {
-            Assert.That(enemy.HP.Value, Is.EqualTo(100));
+            Assert.That(enemy.CurrentParameter.HP.Value, Is.EqualTo(100));
         }
 
         [UnityTest]
@@ -44,6 +44,12 @@ namespace Tests.PlayMode.EnemyTests
         public void 戦闘モードと徘徊モードの切り替え()
         {
             Assert.That(true, Is.False);
+        }
+
+        [Test]
+        public void プレイヤーを発見したらBattleに変更()
+        {
+            
         }
 
         [TearDown]

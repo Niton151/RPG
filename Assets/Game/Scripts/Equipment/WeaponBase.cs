@@ -15,8 +15,8 @@ namespace Game.Scripts.Equipment
         public IObservable<IDamageApplicable> OnHit => _onHitSubject;
         protected Subject<IDamageApplicable> _onHitSubject = new Subject<IDamageApplicable>();
 
-        private bool _canEquip => pickedPlayer.CurrentPlayerParameter.Level >= WeaponData.requiredLevel &&
-                                  WeaponData.requiredType.Contains(pickedPlayer.Type);
+        private bool _meetLevel => pickedPlayer.CurrentParameter.Level >= WeaponData.requiredLevel;
+        private bool _meetType => WeaponData.requiredType.Contains(pickedPlayer.Type);
 
         public override void Init(BaseItemData data)
         {
@@ -28,16 +28,22 @@ namespace Game.Scripts.Equipment
 
         public override void Use()
         {
-            if (_canEquip)
+            if (_meetType)
             {
-                var current = pickedPlayer.Equipment.CurrentWeapon;
-                pickedPlayer.Equipment.Equip(this);
+                if (_meetLevel)
+                {
+                    pickedPlayer.Equipment.Equip(this);
                 
-                _onHitSubject.Subscribe(pickedPlayer.Attacker.Attack);
+                    _onHitSubject.Subscribe(pickedPlayer.Attacker.Attack);
+                }
+                else
+                {
+                    Debug.Log("要求レベルを満たしていません");
+                }
             }
             else
             {
-                Debug.Log("要求レベルを満たしていません");
+                Debug.Log("このジョブでは装備できません");
             }
         }
 

@@ -45,11 +45,11 @@ namespace Tests.PlayMode.PlayerTests
         [Test]
         public void アイテム使用で効果発動()
         {
-            core.SetXP(PlayerXPType.HP, -30);
+            core.SetXP(PlayerStatusType.HP, -30);
             
             core.Inventory.ItemList[0].Use();
             
-            Assert.That(core.HP.Value, Is.EqualTo(95));
+            Assert.That(core.CurrentParameter.HP.Value, Is.EqualTo(95));
         }
 
         [Test]

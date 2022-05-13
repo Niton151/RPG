@@ -4,6 +4,7 @@ namespace Game.Scripts.Item
     {
         Herb,
         WoodSword,
-        LeatherArmor
+        LeatherArmor,
+        PoisonSword
     }
 }

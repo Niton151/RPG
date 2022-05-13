@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace Game.DataBase.EnemyDataBase
 {
-    [CreateAssetMenu(fileName = "EnemyDataBase", menuName = "CreateEnemyDataBase")]
     public class EnemyDataBase : SerializedScriptableObject
     {
         public List<BaseEnemyData> enemies = new List<BaseEnemyData>();

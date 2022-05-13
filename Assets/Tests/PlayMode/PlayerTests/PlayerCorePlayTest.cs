@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Linq;
+using Game.DataBase.PlayerDataBase;
 using Game.Scripts.Damage;
 using Game.Scripts.Enemy;
 using Game.Scripts.Manager;
 using Game.Scripts.Player;
+using Game.Scripts.Player.Skill;
+using Game.Scripts.Player.Skill.SkillBehavior;
+using Game.Scripts.Utility;
 using NUnit.Framework;
 using UniRx;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -18,11 +23,6 @@ namespace Tests.PlayMode.PlayerTests
         [SetUp]
         public void SetUp()
         {
-            var parameter = new PlayerParameters();
-            parameter.MaxHP = 100f;
-            parameter.MaxMP = 100f;
-            parameter.MaxSP = 100f;
-            parameter.ATK = 1;
             core = PlayerProvider.Create(PlayerType.SwordMan, Vector3.zero);
         }
         
@@ -39,7 +39,7 @@ namespace Tests.PlayMode.PlayerTests
         [Test]
         public void 初期化時xPをMaxxPと同じにする()
         {
-            var isMatch = new[] {core.HP.Value, core.MP.Value, core.SP.Value}.SequenceEqual(new[] {100f, 100f, 100f});
+            var isMatch = new[] {core.CurrentParameter.HP.Value, core.MP.Value, core.SP.Value}.SequenceEqual(new[] {100f, 100f, 100f});
             Assert.That(isMatch, Is.True);
         }
 
@@ -52,15 +52,49 @@ namespace Tests.PlayMode.PlayerTests
         }
 
         [Test]
-        public void SetPlayerParametersのテスト()
+        public void レベルアップしたら要求経験値量が増加する()
         {
-            var enhancedParameters = core.CurrentPlayerParameter;
-            var temp = enhancedParameters;
-            enhancedParameters.ATK++;
+            core.LevelUp();
+            Assert.That(core.RequiredExp, Is.EqualTo(17));
+        }
+
+        [Test]
+        public void レベルアップしたらステータスがアップする()
+        {
+            core.LevelUp();
+            core.LevelUp();
+            Assert.That(core.CurrentParameter.STR.BaseValue, Is.EqualTo(16));
+        }
+
+        [Test]
+        public void レベルアップでスキルポイント獲得()
+        {
+            core.LevelUp();
+            Assert.That(core.Skill.SkillPoint, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void スキル習得で習得済みスキルに追加()
+        {
+            core.LevelUp();
+            core.Skill.SkillUp(new EnhanceStatusSkill());
+            Assert.That(core.Skill.SkillTree[SkillID.UpStrP].GetType(), Is.EqualTo(typeof(EnhanceStatusSkill)));
+        }
+
+        [Test]
+        public void スキルポイントの消費()
+        {
+            core.LevelUp();
+            core.Skill.SkillUp(new EnhanceStatusSkill());
+            Assert.That(core.Skill.SkillPoint, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void スキルポイントが足りないときスキルを上げない()
+        {
+            core.Skill.SkillUp(new EnhanceStatusSkill());
             
-            core.SetPlayerParameter(enhancedParameters);
-            
-            Assert.That(core.CurrentPlayerParameter.ATK, Is.EqualTo(temp.ATK + 1));
+            Assert.That(core.Skill.SkillTree.ContainsKey(SkillID.UpStrP), Is.False);
         }
 
         [TearDown]

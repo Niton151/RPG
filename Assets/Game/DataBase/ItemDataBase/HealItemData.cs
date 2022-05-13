@@ -7,6 +7,6 @@ namespace Game.DataBase.ItemDataBase
     public class HealItemData : BaseItemData
     {
         [SerializeField] public float healValue;
-        [SerializeField] public PlayerXPType healType;
+        [SerializeField] public PlayerStatusType healType;
     }
 }
