@@ -7,6 +7,7 @@ using Game.DataBase.PlayerDataBase;
 using Game.Scripts.Damage;
 using Game.Scripts.Damage.AbState;
 using Game.Scripts.Player.Skill;
+using Game.Scripts.Quest;
 using Sirenix.OdinInspector;
 using UniRx;
 using UnityEngine;
@@ -64,6 +65,9 @@ namespace Game.Scripts.Player
 
         public SkillDataBase SkillDataBase => _skillDataBase;
         private SkillDataBase _skillDataBase;
+
+        public void SetQuestFlow(List<QuestBase> flow){ _questFlowList.Add(flow);}
+        private List<List<QuestBase>> _questFlowList = new List<List<QuestBase>>();
 
         public PlayerCore()
         {

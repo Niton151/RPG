@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Game.DataBase.EnemyDataBase
 {
-    [CreateAssetMenu(fileName = "Enemy", menuName = "CreateEnemy")]
+    [CreateAssetMenu(fileName = "Enemy", menuName = "Data/Character/CreateEnemy")]
     public class BaseEnemyData : SerializedScriptableObject
     {
         public EnemyID id;

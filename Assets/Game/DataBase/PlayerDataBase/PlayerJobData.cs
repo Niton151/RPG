@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game.DataBase.PlayerDataBase
 {
-    [CreateAssetMenu(fileName = "Job", menuName = "CreateJob")]
+    [CreateAssetMenu(fileName = "Job", menuName = "Data/Player/CreateJob")]
     public class PlayerJobData : SerializedScriptableObject
     {
         [OdinSerialize] public PlayerParameters parameters;

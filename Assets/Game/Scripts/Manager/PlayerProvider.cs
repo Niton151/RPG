@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Manager
 {
-    public class PlayerProvider
+    public static class PlayerProvider
     {
         private static PlayerJobDataBase DataBase = Resources.Load<PlayerJobDataBase>("JobDataBase");
     

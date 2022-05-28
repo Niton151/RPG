@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.DataBase.ItemDataBase
 {
-    [CreateAssetMenu(fileName = "Armor", menuName = "CreateArmor")]
+    [CreateAssetMenu(fileName = "Armor", menuName = "Data/Item/CreateArmor")]
     public class ArmorData : BaseItemData
     {
         [SerializeField] public float DEF;

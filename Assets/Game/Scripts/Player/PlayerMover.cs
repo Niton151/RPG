@@ -1,4 +1,6 @@
+using System;
 using Game.Scripts.Player.Input;
+using UniRx;
 
 namespace Game.Scripts.Player
 {
@@ -15,5 +17,7 @@ namespace Game.Scripts.Player
         {
 
         }
+
+        public IObservable<Unit> OnAction { get; }
     }
 }

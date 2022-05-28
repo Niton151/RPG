@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.DataBase.ItemDataBase
 {
-    [CreateAssetMenu(fileName = "HealItem", menuName = "CreateHealItem")]
+    [CreateAssetMenu(fileName = "HealItem", menuName = "Data/Item/CreateHealItem")]
     public class HealItemData : BaseItemData
     {
         [SerializeField] public float healValue;

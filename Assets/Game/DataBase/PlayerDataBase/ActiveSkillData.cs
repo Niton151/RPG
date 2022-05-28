@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.DataBase.PlayerDataBase
 {
-    [CreateAssetMenu(fileName = "ActiveSkill", menuName = "CreateActiveSkill")]
+    [CreateAssetMenu(fileName = "ActiveSkill", menuName = "Data/Player/CreateActiveSkill")]
     public class ActiveSkillData : BaseSkillData
     {
         public double multiple;

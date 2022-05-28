@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.DataBase.PlayerDataBase
 {
-    [CreateAssetMenu(fileName = "PassiveSkill", menuName = "CreatePassiveSkill")]
+    [CreateAssetMenu(fileName = "PassiveSkill", menuName = "Data/Player/CreatePassiveSkill")]
     public class PassiveSkillData : BaseSkillData
     {
         public PlayerStatusType type;

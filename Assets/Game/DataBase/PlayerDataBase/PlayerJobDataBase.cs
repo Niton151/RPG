@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Game.DataBase.PlayerDataBase
 {
-    [CreateAssetMenu(fileName = "JobDataBase", menuName = "CreateJobDataBase")]
     public class PlayerJobDataBase : ScriptableObject
     {
         [SerializeField] private List<PlayerJobData> _jobs = new List<PlayerJobData>();

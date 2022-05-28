@@ -8,7 +8,6 @@ using UnityEngine;
 
 namespace Game.DataBase.PlayerDataBase
 {
-    [CreateAssetMenu(fileName = "SkillDataBase", menuName = "CreateSkillDataBase")]
     public class SkillDataBase : SerializedScriptableObject
     {
         public List<BaseSkillData> skills = new List<BaseSkillData>();

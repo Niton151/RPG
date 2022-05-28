@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Game.DataBase.ItemDataBase
 {
-    [CreateAssetMenu(fileName = "Weapon", menuName = "CreateWeapon")]
+    [CreateAssetMenu(fileName = "Weapon", menuName = "Data/Item/CreateWeapon")]
     public class WeaponData : BaseItemData
     {
         [SerializeField] public float ATK;

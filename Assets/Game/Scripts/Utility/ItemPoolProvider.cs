@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Utility
 {
-    [CreateAssetMenu(fileName = "ItemPoolProvider", menuName = "CreateItemPoolProvider")]
+    [CreateAssetMenu(fileName = "ItemPoolProvider", menuName = "Utility/CreateItemPoolProvider")]
     public class ItemPoolProvider : ScriptableObject
     {
         [SerializeField]
