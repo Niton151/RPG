@@ -25,10 +25,15 @@ namespace Game.Scripts.Quest.Quests
                 .First()
                 .Subscribe(_ =>
                 {
+                    Debug.Log("aaa");
                     _onClearSubject.OnNext(Unit.Default);
                     _onClearSubject.OnCompleted();
                     Object.Destroy(_marker);
                 });
+
+            _onClearSubject
+                .Subscribe(_ => IsClear = true)
+                .AddTo(_marker);
         }
     }
 }

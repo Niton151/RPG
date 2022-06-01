@@ -1,10 +1,10 @@
 using System;
-using Game.Scripts.Player.Input;
+using Game.Scripts.Player.MyInput;
 using UniRx;
 
 namespace Game.Scripts.Player
 {
-    public class PlayerMover : BasePlayerComponent, IInputEventProvider
+    public class PlayerMover : BasePlayerComponent
     {
         // Start is called before the first frame update
         void Start()
@@ -17,7 +17,5 @@ namespace Game.Scripts.Player
         {
 
         }
-
-        public IObservable<Unit> OnAction { get; }
     }
 }

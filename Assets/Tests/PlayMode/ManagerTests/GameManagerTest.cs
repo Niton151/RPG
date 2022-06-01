@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Game.Scripts.Manager;
 using Game.Scripts.Player;
+using Game.Scripts.Utility;
 using NUnit.Framework;
 using UniRx;
 using UnityEngine;
@@ -17,7 +18,7 @@ namespace Tests.PlayMode.ManagerTests
         public void SetUp()
         {
             manager = new GameObject("GameManager").AddComponent<GameManager>();
-            manager.Initializer.Initialize(PlayerType.SwordMan);
+            manager.Initializer.Initialize(ScriptableObject.CreateInstance<Config>());
         }
         
         [UnityTest]

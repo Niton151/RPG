@@ -1,4 +1,4 @@
-using Game.Scripts.Player.Input;
+using Game.Scripts.Player.MyInput;
 using UnityEngine;
 
 namespace Game.Scripts.Player
