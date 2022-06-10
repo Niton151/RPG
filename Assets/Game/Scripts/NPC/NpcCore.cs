@@ -16,8 +16,8 @@ namespace Game.Scripts.NPC
 {
     public class NpcCore : SerializedMonoBehaviour
     {
-        [OdinSerialize] private string _message;
-        [OdinSerialize] private List<QuestBase> _questFlow = new List<QuestBase>();
+        private string _message;
+        private QuestFlow _questFlow;
         private bool _isTalking = false;
         public bool IsTalking => _isTalking;
         private PlayerCore core;
@@ -26,13 +26,14 @@ namespace Game.Scripts.NPC
         public void Init(BaseNpcData data)
         {
             _flowchart = GetComponent<Flowchart>();
+            _message = data.message;
+            _questFlow = data.questFlow;
 
             this.OnTriggerStayAsObservable()
                 .Where(_ => Config.InputProvider.OnAction())
-                .Where(_ => TryGetComponent(out core))
+                .Where(x => x.TryGetComponent(out core))
                 .Subscribe(_ =>
                 {
-                    Debug.Log("Talk subscribe");
                     Talk();
                 })
                 .AddTo(this);
@@ -42,13 +43,11 @@ namespace Game.Scripts.NPC
         {
             if (_isTalking)
             {
-                Debug.Log("talking");
                 return;
             }
 
             _isTalking = true;
-        
-            Debug.Log("talk");
+            
             _flowchart.SendFungusMessage(_message);
             await UniTask.WaitUntil(() => _flowchart.GetExecutingBlocks().Count == 0);
 

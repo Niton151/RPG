@@ -16,48 +16,50 @@ namespace Tests.PlayMode.QuestTests
         private PlayerCore player;
         private ColliderTest ct;
 
-        [SetUp]
-        public void SetUp()
+        [UnitySetUp]
+        public IEnumerator UnitySetUp()
         {
             var gameManager = new GameObject("Manager").AddComponent<GameManager>();
             player = gameManager.Player;
             npc = NpcProvider.Create(Vector3.zero, NpcType.Villager);
             ct = new ColliderTest();
-        }
-        
-        [Test]
-        public void クエストを受注する()
-        {
-            Assert.That(true, Is.False);
-        }
-
-        [Test]
-        public void クエストの条件を満たしたらクリア()
-        {
-            Assert.That(true, Is.False);
-        }
-
-        [Test]
-        public void クエストをクリアする()
-        {
-            Assert.That(true, Is.False);
+            
+            yield return null;
+            ct.Clash(player.gameObject, npc.gameObject);
+            yield return ct.OnTestFinished.Timeout(TimeSpan.FromSeconds(3)).ToYieldInstruction(throwOnError:false);
+            
+            player.GetQuestFlowList[0].StartFlow(player);
+            yield return player.GetQuestFlowList[0].Quests[0].OnClear.ToYieldInstruction();
         }
 
         [Test]
         public void プレイヤーに報酬を与える()
         {
+            Assert.That(player.Inventory.ItemList.Count, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void クエストが進む()
+        {
+            Assert.That(player.GetQuestFlowList[0].Progress, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void クエストを破棄する()
+        {
             Assert.That(true, Is.False);
         }
 
-        [UnityTest]
-        public IEnumerator Gotoクエストをクリア()
+        [Test]
+        public void クエストフロークリア()
         {
-            yield return null;
-            ct.Clash(player.gameObject, npc.gameObject);
-            yield return ct.OnTestFinished.Timeout(TimeSpan.FromSeconds(3)).ToYieldInstruction(throwOnError:false);
-            yield return new WaitUntil(() => npc.IsTalking);
-            player.GetQuestFlowList[0][0].Begin();
-            Assert.That(player.GetQuestFlowList[0][0].IsClear, Is.True);
+            Assert.That(player.GetQuestFlowList[0].IsFlowClear, Is.True);
+        }
+
+        [Test]
+        public void Gotoクエストをクリア()
+        {
+            Assert.That(player.GetQuestFlowList[0].Quests[0].IsClear, Is.True);
         }
     }
 }

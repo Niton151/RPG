@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using Game.Scripts.Player;
 using Sirenix.Serialization;
 using UniRx;
 using UniRx.Triggers;
@@ -10,30 +11,29 @@ namespace Game.Scripts.Quest.Quests
 {
     public class GotoQuest : QuestBase
     {
-        public IObservable<Unit> OnClear => _onClearSubject;
-
         [OdinSerialize] private Vector3 _targetPos;
         [OdinSerialize] private GameObject _markerPrefab;
         private GameObject _marker;
-        private Subject<Unit> _onClearSubject = new Subject<Unit>();
 
-        public override void Begin()
+        public override void Begin(PlayerCore player)
         {
+            onClearSubject = new Subject<Unit>();
             _marker = Object.Instantiate(_markerPrefab, _targetPos, Quaternion.identity);
             _marker.OnTriggerEnterAsObservable()
                 .Select(x => x.CompareTag("Player"))
                 .First()
                 .Subscribe(_ =>
                 {
-                    Debug.Log("aaa");
-                    _onClearSubject.OnNext(Unit.Default);
-                    _onClearSubject.OnCompleted();
-                    Object.Destroy(_marker);
-                });
+                    onClearSubject.OnNext(Unit.Default);
+                    onClearSubject.OnCompleted();
+                }).AddTo(_marker);
 
-            _onClearSubject
-                .Subscribe(_ => IsClear = true)
-                .AddTo(_marker);
+            onClearSubject
+                .Subscribe(_ =>
+                {
+                    IsClear = true;
+                    GiveReward(player);
+                }).AddTo(_marker);
         }
     }
 }

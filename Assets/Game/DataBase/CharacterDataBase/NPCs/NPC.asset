@@ -15,12 +15,98 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 1160701062388562085, guid: 5ac3121558fd525498941790a7c0b19e, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: questFlow
+      Entry: 7
+      Data: 0|Game.Scripts.Quest.QuestFlow, MyProject
+    - Name: <Quests>k__BackingField
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[Game.Scripts.Quest.QuestBase, MyProject]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 2|Game.Scripts.Quest.Quests.GotoQuest, MyProject
+    - Name: _rewardItems
+      Entry: 7
+      Data: 3|System.Collections.Generic.Dictionary`2[[Game.Scripts.Item.ItemID,
+        MyProject],[System.Single, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 4|System.Collections.Generic.EnumEqualityComparer`1[[Game.Scripts.Item.ItemID,
+        MyProject]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _expReward
+      Entry: 3
+      Data: 100
+    - Name: _targetPos
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 5
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _markerPrefab
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   type: 0
-  name: Test Taro
+  npcName: Test Taro
   prefab: {fileID: 2320071241940295553, guid: 911b6a7bf7efdd6478d587e377442c84, type: 3}
+  message: test

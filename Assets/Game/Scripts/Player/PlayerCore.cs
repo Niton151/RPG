@@ -66,9 +66,9 @@ namespace Game.Scripts.Player
         public SkillDataBase SkillDataBase => _skillDataBase;
         private SkillDataBase _skillDataBase;
 
-        public void SetQuestFlow(List<QuestBase> flow){ _questFlowList.Add(flow);}
-        public List<List<QuestBase>> GetQuestFlowList => _questFlowList;
-        private List<List<QuestBase>> _questFlowList = new List<List<QuestBase>>();
+        public void SetQuestFlow(QuestFlow flow){ _questFlowList.Add(flow);}
+        public List<QuestFlow> GetQuestFlowList => _questFlowList;
+        private List<QuestFlow> _questFlowList = new List<QuestFlow>();
 
         public PlayerCore()
         {
